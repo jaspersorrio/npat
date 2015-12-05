@@ -1,21 +1,42 @@
-<div class="jumbotron">
-  <video autoplay loop id="bgvid" ng-class="{'greyscale': videoColor}">
-      <source src="../videos/npat cover2.mp4" type="video/mp4">
-  </video>
+<style type="text/css">
+  .call-to-action-container{
+    height:100%;
+    z-index: 1000000;
+    text-shadow: 2px 2px black;
+  }
+</style>
 
-  <div class="call-to-action" ng-mouseleave="videoColor = false" ng-mouseover="videoColor = true;">
-    <!-- NPAT LOGO -->
-    <div class="row">
-      <div class="col-xs">
-        <img  src="./images/npat.jpg">
+<!-- for mobile -->
+<div id="bgImg" ng-if="isMobile" ng-class="{'greyscale': videoColor}"></div>
+
+<!-- for desktop -->
+<video ng-if="!isMobile" autoplay loop id="bgvid" ng-class="{'greyscale': videoColor}">
+    <source src="../videos/npat cover2.mp4" type="video/mp4">
+</video>
+
+<div class="call-to-action-container" layout="column" flex layout-align="center start">
+
+  
+
+  <a href="#/funday" class="call-to-action">
+    <div class="call-to-action" 
+    ng-mouseleave="videoColor = false" 
+    ng-mouseover="videoColor = true;"
+    layout="column"
+    layout-align="center center"
+    >
+      <!-- NPAT LOGO -->
+      <div>
+        <img id="npat" src="./images/npat.jpg">  
+      </div>
+      
+
+      <div>
+        <!--  SIGN UP TEXT  -->
+        <h1>Sign up for AT ˚ FUNDAY</h1>
       </div>
     </div>
-
-    <!--  SIGN UP TEXT  -->
-    <div class="row">
-      <h1 class="col-xs">Sign up for AT ˚ FUNDAY</h1>
-    </div>
-  </div>
+  </a>
   
   
 </div>

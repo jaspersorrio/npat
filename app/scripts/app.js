@@ -10,6 +10,7 @@
  */
 angular
   .module('npatApp', [
+    'ngMaterial',
     'ngAnimate',
     'ngCookies',
     'ngMessages',
@@ -18,7 +19,11 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+      .primaryPalette('blue')
+      .accentPalette('pink');
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -34,6 +39,11 @@ angular
         templateUrl: 'views/funday.html',
         controller: 'FundayCtrl',
         controllerAs: 'funday'
+      })
+      .when('/funday/2', {
+        templateUrl: 'views/funday/2.html',
+        controller: 'Funday2Ctrl',
+        controllerAs: 'funday/2'
       })
       .otherwise({
         redirectTo: '/'
