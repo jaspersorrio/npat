@@ -35,6 +35,7 @@ var studentSchema = new Schema({
 	shirt: String,
 	size: String,
 	teamCode: String,
+	allergies: String,
 	validated: {type: Boolean, default: false}
 });
 
@@ -248,18 +249,18 @@ app.get('/api/validate/:id', function(req,res){
 
 })
 
-app.get('/all', function(req,res){
-	Student.find({},'teamCode createGroup', function(err, students){
-		if(err){
-			res.json({
-				success:false,
-				error: err
-			})
-		} else {
-			res.json(students)
-		}
-	});
-})
+// app.get('/all', function(req,res){
+// 	Student.find({}, function(err, students){
+// 		if(err){
+// 			res.json({
+// 				success:false,
+// 				error: err
+// 			})
+// 		} else {
+// 			res.json(students)
+// 		}
+// 	});
+// })
 
 // app.get('/email', function(req, res){
 // 	 var html = ejs.render( fs.readFileSync(__dirname + '/views/email.ejs' , 'utf8'), {stud: { __v: 0,
