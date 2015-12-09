@@ -1,0 +1,33 @@
+<style type="text/css">
+	[text-center]{
+		text-align: center;
+	}
+
+	[validation]{
+		color: rgba(0,0,0,0.78) !important;
+		height: 50%;
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		background-color: white;
+	}
+
+	.bigbox{
+		height: 100% !important;
+		width: 100% !important;
+		background-color: whitesmoke;
+	}
+
+
+</style>
+<div class="bigbox">
+	
+	<div class="md-whiteframe-2dp validate-card" text-center validation flex-offset="10" flex="80" flex-gt-md="50" flex-offset-gt-md="25" layout="column" layout-align="center center">
+
+		<h4>Please validate this request by clicking on the link sent to <span class="stand-out">S{{stud.stripedNumber}}@connect.np.edu.sg</span></h4>
+		<md-button class="md-raised md-primary" href="/#/funday">Edit Submission</md-button>
+		<div>
+			<h2 class="my-warn">You can close this window now.</h2>
+		</div>
+	</div>	
+</div>

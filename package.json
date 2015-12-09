@@ -40,10 +40,12 @@
   },
   "dependencies": {
     "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
     "express": "^4.13.3",
     "flexboxgrid": "^6.3.0",
     "kerberos": "0.0.17",
     "mongoose": "^4.2.9",
-    "node-restful": "^0.2.4"
+    "node-restful": "^0.2.4",
+    "nodemailer": "^1.10.0"
   }
 }

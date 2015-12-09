@@ -18,14 +18,6 @@
 		color:white !important;
 	}
 
-	.stand-out{
-		color:#2196F3;
-	}
-
-	.my-warn{
-		color: #E91E63;
-	}
-
 	.cropped-images{
 		max-height: 100%;
 		height: 100%;
@@ -50,6 +42,12 @@
 	join as team
 	shirt size
 	shirt size chart -->
+
+	<div layout="row" flex-offset="30" flex="40" flex-md="20" flex-offset-md="40" flex-gt-md="10" flex-offset-gt-md="45" layout-padding layout-align="center center">
+		<a href="#/" layout="column" layout-align="center center">
+			<img src="../images/npat.jpg">
+		</a>
+	</div>	
 
 	<div class="scrollable" layout="row" flex-offset-gt-md="20" flex-gt-md="60" flex="80" flex-offset="10" layout-align="center center">
 
@@ -158,7 +156,7 @@
 				<md-tab label="Games" ng-disabled="!stud.noShirt && !stud.size" ng-click="getPageThree(stud)">
 					<h2>Choose a game!</h2>
 
-					<md-grid-list md-cols="1" md-gutter="15px" md-row-height="1:1">
+					<md-grid-list md-cols-sm="1" md-cols="2" md-gutter="15px" md-row-height="1:1">
 						<md-grid-tile ng-click="playFussball()">
 							<img class="cropped-images" src="../images/humanfusball.jpg">
 							<md-grid-tile-footer>
@@ -217,7 +215,9 @@
 						<div ng-if="numberLeft">Woah, only <span class="stand-out">{{numberLeft}}</span> slots left</div>
 
 					</div>
-					<md-button class="md-raised md-primary" ng-click="putStudent(stud)" ng-disabled="pageFourBtnCheck(stud)">Confirm</md-button>
+					<md-button ng-if="!stud._id" class="md-raised md-primary" ng-click="putStudent(stud)" ng-disabled="pageFourBtnCheck(stud)">Confirm</md-button>
+
+					<md-button ng-if="stud._id" class="md-raised md-primary" ng-click="editStudent(stud)" ng-disabled="pageFourBtnCheck(stud)">Edit</md-button>					
 
 				</md-tab>
 			</md-tabs>

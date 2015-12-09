@@ -45,6 +45,11 @@ angular
         controller: 'Funday2Ctrl',
         controllerAs: 'funday/2'
       })
+      .when('/validate', {
+        templateUrl: 'views/validate.html',
+        controller: 'ValidateCtrl',
+        controllerAs: 'validate'
+      })
       .otherwise({
         redirectTo: '/'
       });
