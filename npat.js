@@ -1,6 +1,6 @@
 // Dependencies
 var express = require('express');
-var port = process.argv[3] || 11111;
+var port = process.env.PORT || 11111;
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var ejs = require('ejs');
