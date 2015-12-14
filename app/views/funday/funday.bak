@@ -1,0 +1,273 @@
+<style type="text/css">
+
+	.bg-main{
+		background-color: whitesmoke;
+	}
+
+	label{
+		text-shadow:none !important;
+	}
+
+	.signup{
+		background-color:whitesmoke;
+		color:rgba(0,0,0,0.78);
+	}
+
+	button.black{
+		background-color: black !important;
+		color:white !important;
+	}
+
+	.cropped-images{
+		max-height: 100%;
+		height: 100%;
+		width: 100%;
+	}
+
+	md-tab-item{
+		color: rgba(0,0,0,0.78) !important;
+	}
+
+	md-tab-item.md-active{
+		color: rgb(16,108,200) !important;
+	}
+
+	.npatVids{
+		width:100%;
+		cursor:pointer;
+	}
+
+	.video-cover{
+		position: absolute;
+		background: black;
+		width: 100%;
+		height: 100%;
+		color:white;
+	}
+
+	.video-cover h2{
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+	}
+
+	[ng-click]{
+		outline: none;
+	}
+</style>
+<div class="flex-height signup" >
+	<!-- name
+	stud id
+	Hp Number
+	game
+	join alone
+	join as group
+	join as team
+	shirt size
+	shirt size chart -->
+
+	<div layout="row" flex-offset="30" flex="40" flex-md="20" flex-offset-md="40" flex-gt-md="10" flex-offset-gt-md="45" layout-padding layout-align="center center">
+		<a href="#/" layout="column" layout-align="center center">
+			<img src="../images/npat.jpg">
+		</a>
+	</div>	
+
+	<div class="scrollable" layout="row" flex-offset-gt-md="20" flex-gt-md="60" flex="80" flex-offset="10" layout-align="center center">
+
+	<md-card flex>
+		<md-card-content>
+			<md-tabs md-selected="page" md-swipe-content md-dynamic-height>
+				<md-tab label="General">
+
+					<!-- MAIN -->
+					<md-tab-body>
+						<h2 class="sec-text">Sign up now!</h2>
+
+						<div class="page" layout-padding flex>
+							<ng-form name="pageOne">
+								<md-input-container >
+									<label>Full Name</label>
+									<input required flex type="text" name="studName" ng-model="stud.name">
+									<div ng-messages="pageOne.studName.$error" 
+									ng-if="pageOne.studName.$touched" role="alert">
+										<div ng-message="required">This is required</div>
+									</div>
+								</md-input-container>
+
+								<md-input-container >
+									<label>Student Number (10109323A)</label>
+									<input required type="text" pattern="[0-9]{8}[a-zA-Z]{1}" 
+									name="studNumber" 
+									ng-model="stud.number">
+									<div ng-messages="pageOne.studNumber.$error" 
+									ng-if="pageOne.studNumber.$touched" role="alert">
+										<div ng-message="required">This is required</div>
+										<div ng-message="pattern">This does not seem to look like 10109323a</div>
+									</div>
+								</md-input-container>
+
+								<md-input-container >
+									<label>Phone Number</label>
+									<input required type="tel" name="studHp" 
+									pattern="[0-9]{8}" ng-model="stud.hp">
+									<div ng-messages="pageOne.studHp.$error" 
+									ng-if="pageOne.studHp.$touched" role="alert">
+										<div ng-message="required">This is required</div>
+										<div ng-message="pattern">This does not seem to look like a Singapore Number (90019002)</div>
+									</div>
+								</md-input-container>
+
+								<!-- any food allergies or dietry requirements -->
+								<md-input-container >
+									<label>Food allergies / Dietry requirements</label>
+									<input type="text" name="studAllergies" ng-model="stud.allergies">
+								</md-input-container>
+
+							</ng-form>
+
+							<md-button 
+							ng-click="getPageTwo(stud)" 
+							class="md-primary md-raised"
+							ng-disabled="pageOne.$invalid">Next</md-button>
+						</div>
+					</md-tab-body>
+				</md-tab>
+
+				<!-- SHIRT -->
+				<md-tab ng-click="getPageTwo(stud)" ng-disabled="pageOne.$invalid" label="Shirt">
+					<md-tab-body >
+						<h2 class="sec-text" ng-if="!stud.noShirt">$5 Special promotion</h2>
+						<!-- <span class="my-warn" ng-if="!stud.noShirt">($5 Special promotion)</span> -->
+						<img class="cropped-images" ng-src="{{shirt}}" >
+
+						<div class="page" ng-if="!stud.noShirt" layout="row" flex>
+							<md-button class="md-raised black" 
+							ng-click="chooseBlack()">Black</md-button>
+
+							<md-button class="md-raised"
+							ng-click="chooseWhite()">White</md-button>
+
+						</div>
+
+						<md-input-container ng-if="!stud.noShirt">
+							<label>Size</label>
+							<md-select ng-model="stud.size">
+								<md-option value="XS">XS</md-option>
+								<md-option value="S">S</md-option>
+								<md-option value="M">M</md-option>
+								<md-option value="L">L</md-option>
+								<md-option value="XL">XL</md-option>
+							</md-select>
+						</md-input-container>
+
+						<!-- <span class="my-warn">($8 After AT FUNDAY)</span> -->
+						<h2 ng-if="stud.noShirt">Are you sure? </h2>
+						<p class="my-warn" ng-if="stud.noShirt">AT Shirt is $8 After AT FUNDAY</p>
+						<p ng-if="stud.noShirt">AT Funday + AT Shirt = <span class="my-warn">$5.</span></p>
+						<p ng-if="stud.noShirt">AT Funday <strong>only</strong> = <span class="my-warn">$3</span>.</p>
+
+						 <md-switch ng-model="stud.noShirt">
+							I'm not buying the shirt. 
+						</md-switch>
+
+						<md-button class="md-raised" 
+						ng-class="{
+						'md-warn':stud.noShirt,
+						'md-primary':!stud.noShirt
+						}"
+
+						ng-disabled="!stud.noShirt && !stud.size"
+						ng-click="getPageThree(stud)"
+						>Confirm</md-button>
+
+					</md-tab-body>
+				</md-tab>
+
+				<!-- GAMES -->
+				<md-tab label="Games" ng-disabled="!stud.noShirt && !stud.size" ng-click="getPageThree(stud)">
+					<h2>Choose a game!</h2>
+
+					<md-grid-list md-cols-sm="1" md-cols="2" md-gutter="15px" md-row-height="16:9">
+						<md-grid-tile ng-click="playFussball()">
+							<!-- <md-grid-tile-header>
+								<h3>Human Fussball</h3>
+							</md-grid-tile-header> -->
+							<div class="video-cover" text-center>
+								<h2>Click to find out how to play Human Fussball</h2>
+							</div>
+							<video class="npatVids fussball" poster="" preload="none">
+								<source src="/vid/humanFussball.mp4">
+							</video>
+							<!-- <img class="cropped-images" src="../images/humanfusball.jpg"> -->
+						</md-grid-tile>
+
+						<md-grid-tile ng-click="playDball()">
+							<!-- <md-grid-tile-header>
+								<h3>Dragon Ball</h3>
+							</md-grid-tile-header> -->
+							<div class="video-cover" text-center>
+								<h2>Click to find out how to play Dragon Ball</h2>
+							</div>
+							<video class="npatVids dball" poster="" preload="none">
+								<source src="/vid/dragonBall.mp4">
+							</video>
+							<!-- <img class="cropped-images" src="../images/dragonball.jpg"> -->
+						</md-grid-tile>
+					</md-grid-list>
+
+					<md-input-container>
+						<label>Game</label>
+						<md-select ng-model="stud.game">
+							<md-option value="Human Fussball">Human Fussball</md-option>
+							<md-option value="Dragon Ball">Dragon Ball</md-option>
+						</md-select>
+					</md-input-container>
+
+					<md-button ng-click="getPageFour(stud)" ng-disabled="!stud.game" class="md-primary md-raised">Confirm</md-button>
+
+				</md-tab>
+
+				<!-- TEAM -->
+				<md-tab label="Team" ng-disabled="!stud.game" ng-click="getPageFour(stud)">
+					<h2>Teams</h2>
+
+					<md-radio-group ng-model="stud.group">
+						<md-radio-button value="Alone">Join alone</md-radio-button>
+						<md-radio-button value="Group">Join as a group (Max 10 players)</md-radio-button>
+					</md-radio-group>
+
+					<div ng-if="stud.group == 'Group'">
+						<md-button ng-click="createGroup()" class="md-raised md-accent" >Create Group</md-button>
+						<md-button ng-click="joinGroup()" class="md-raised md-accent" >Join Group</md-button>
+
+						<div ng-if="stud.createGroup">
+							Your team code is <span class="stand-out">{{stud.createGroup}}</span> ! Please pass this code to your team mates!
+						</div>
+
+						<div ng-if="stud.joinGroup">
+							<md-input-container>
+								<label>Team Code</label>
+								<input type="text" 
+								ng-change="checkCode(stud.game, stud.teamCode)" 
+								ng-model="stud.teamCode">
+								<div ng-messages="stud.teamCode" role="alert">
+									<div ng-repeat="error in stud.errorMsg">{{error}}</div>
+								</div>
+							</md-input-container>
+						</div>
+
+						<div ng-if="numberLeft">Woah, only <span class="stand-out">{{numberLeft}}</span> slots left</div>
+
+					</div>
+					<md-button ng-if="!stud._id" class="md-raised md-primary" ng-click="putStudent(stud)" ng-disabled="pageFourBtnCheck(stud)">Confirm</md-button>
+
+					<md-button ng-if="stud._id" class="md-raised md-primary" ng-click="editStudent(stud)" ng-disabled="pageFourBtnCheck(stud)">Edit</md-button>					
+
+				</md-tab>
+			</md-tabs>
+		</md-card-content>
+	</md-card>
+		
+	</div>
+</div>

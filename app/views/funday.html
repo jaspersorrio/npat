@@ -31,6 +31,30 @@
 	md-tab-item.md-active{
 		color: rgb(16,108,200) !important;
 	}
+
+	.npatVids{
+		width:100%;
+		cursor:pointer;
+	}
+
+	.video-cover{
+		position: absolute;
+		background: black;
+		width: 100%;
+		height: 100%;
+		color:white;
+	}
+
+	.video-cover h2{
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		-webkit-transform: translateY(-50%);
+	}
+
+	[ng-click]{
+		outline: none;
+	}
 </style>
 <div class="flex-height signup" >
 	<!-- name
@@ -85,7 +109,7 @@
 
 								<md-input-container >
 									<label>Phone Number</label>
-									<input required type="text" name="studHp" 
+									<input required type="tel" name="studHp" 
 									pattern="[0-9]{8}" ng-model="stud.hp">
 									<div ng-messages="pageOne.studHp.$error" 
 									ng-if="pageOne.studHp.$touched" role="alert">
@@ -113,9 +137,9 @@
 				<!-- SHIRT -->
 				<md-tab ng-click="getPageTwo(stud)" ng-disabled="pageOne.$invalid" label="Shirt">
 					<md-tab-body >
+						<h2 class="sec-text" ng-if="!stud.noShirt">$5 Special promotion</h2>
+						<!-- <span class="my-warn" ng-if="!stud.noShirt">($5 Special promotion)</span> -->
 						<img class="cropped-images" ng-src="{{shirt}}" >
-
-						<h2 class="sec-text" ng-if="!stud.noShirt">Choose a color!</h2>
 
 						<div class="page" ng-if="!stud.noShirt" layout="row" flex>
 							<md-button class="md-raised black" 
@@ -137,13 +161,14 @@
 							</md-select>
 						</md-input-container>
 
-						<h2 ng-if="stud.noShirt">Are you sure?</h2> 
-						<p ng-if="stud.noShirt">This is the <span class="stand-out">official</span> course tee of the year.</p>
-						<p ng-if="stud.noShirt">The price for AT Funday <span class="stand-out">including</span> the shirts is <span class="stand-out">$12.</span></p>
-						<p ng-if="stud.noShirt"> <span class="my-warn">Without</span> the shirts the price of AT Funday is <span class="my-warn">$8</span>.</p>
+						<!-- <span class="my-warn">($8 After AT FUNDAY)</span> -->
+						<h2 ng-if="stud.noShirt">Are you sure? </h2>
+						<p class="my-warn" ng-if="stud.noShirt">AT Shirt is $8 After AT FUNDAY</p>
+						<p ng-if="stud.noShirt">AT Funday + AT Shirt = <span class="my-warn">$5.</span></p>
+						<p ng-if="stud.noShirt">AT Funday <strong>only</strong> = <span class="my-warn">$3</span>.</p>
 
 						 <md-switch ng-model="stud.noShirt">
-							I'm not buying the shirt.
+							I'm not buying the shirt. 
 						</md-switch>
 
 						<md-button class="md-raised" 
@@ -163,18 +188,31 @@
 				<md-tab label="Games" ng-disabled="!stud.noShirt && !stud.size" ng-click="getPageThree(stud)">
 					<h2>Choose a game!</h2>
 
-					<md-grid-list md-cols-sm="1" md-cols="2" md-gutter="15px" md-row-height="1:1">
+					<md-grid-list md-cols-sm="1" md-cols="2" md-gutter="15px" md-row-height="16:9">
 						<md-grid-tile ng-click="playFussball()">
-							<img class="cropped-images" src="../images/humanfusball.jpg">
-							<md-grid-tile-footer>
-							<h3>Human Fussball</h3>
-							</md-grid-tile-footer>
+							<!-- <md-grid-tile-header>
+								<h3>Human Fussball</h3>
+							</md-grid-tile-header> -->
+							<div class="video-cover" text-center>
+								<h2>Click to find out how to play Human Fussball</h2>
+							</div>
+							<video class="npatVids fussball" poster="" preload="none">
+								<source src="/vid/humanFussball.mp4">
+							</video>
+							<!-- <img class="cropped-images" src="../images/humanfusball.jpg"> -->
 						</md-grid-tile>
+
 						<md-grid-tile ng-click="playDball()">
-							<img class="cropped-images" src="../images/dragonball.jpg">
-							<md-grid-tile-footer>
-							<h3>Dragon Ball</h3>
-							</md-grid-tile-footer>
+							<!-- <md-grid-tile-header>
+								<h3>Dragon Ball</h3>
+							</md-grid-tile-header> -->
+							<div class="video-cover" text-center>
+								<h2>Click to find out how to play Dragon Ball</h2>
+							</div>
+							<video class="npatVids dball" poster="" preload="none">
+								<source src="/vid/dragonBall.mp4">
+							</video>
+							<!-- <img class="cropped-images" src="../images/dragonball.jpg"> -->
 						</md-grid-tile>
 					</md-grid-list>
 

@@ -6,6 +6,9 @@ var bodyParser = require('body-parser');
 var ejs = require('ejs');
 var fs = require('fs');
 
+// check if production
+
+
 // MongoDB
 mongoose.connect('mongodb://localhost/npat');
 var Schema = mongoose.Schema;
@@ -93,6 +96,51 @@ app.get('/api/code/:id',function(req,res){
 		}
 		
 	});
+});
+
+app.use('/vid',function(req, res, next){
+// 
+	console.log(req.originalUrl);
+	var filename = req.originalUrl.split('/vid/');
+	var path = __dirname+ '/app/videos/' +filename[1];
+	// var file = fs.createReadStream(__dirname+ '/app/videos/' +filename[1]);
+	
+	// res.writeHead(206, {
+	// 	// 'Content-Range': 'bytes ' + start + '-' + end + '/' + total,
+	// 	'Accept-Ranges': 'bytes',
+	// 	'Content-Type': 'video/mp4'
+	// });
+
+	// file.on('data',function(chunk){
+	// 	console.log(chunk);
+	// })
+
+	// file.pipe(res);
+	// next();
+	// console.log(path);
+	var stat = fs.statSync(path);
+	var total = stat.size;
+	
+	if (req.headers['range']) {
+		var range = req.headers.range;
+		var parts = range.replace(/bytes=/, "").split("-");
+		var partialstart = parts[0];
+		var partialend = parts[1];
+
+		var start = parseInt(partialstart, 10);
+		var end = partialend ? parseInt(partialend, 10) : total-1;
+		var chunksize = (end-start)+1;
+		console.log('RANGE: ' + start + ' - ' + end + ' = ' + chunksize);
+
+		var file = fs.createReadStream(path, {start: start, end: end});
+		res.writeHead(206, { 'Content-Range': 'bytes ' + start + '-' + end + '/' + total, 'Accept-Ranges': 'bytes', 'Content-Length': chunksize, 'Content-Type': 'video/mp4' });
+		file.pipe(res);
+	} else {
+		console.log('ALL: ' + total);
+		res.writeHead(200, { 'Content-Length': total, 'Content-Type': 'video/mp4' });
+		fs.createReadStream(path).pipe(res);
+	}
+
 });
 
 app.post('/api/student',function(req, res){

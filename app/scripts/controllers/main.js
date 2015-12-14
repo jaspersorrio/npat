@@ -16,5 +16,17 @@ angular.module('npatApp')
 	}
 
 	$scope.isMobile = this.mobileAndTabletcheck();
-	
-  })
+
+  }).directive('watchVideo', [function () {
+  	return {
+  		restrict: 'A',
+  		link: function (scope, iElement, iAttrs) {
+  			var video = document.getElementsByTagName('video')[0];
+  			angular.element(iElement).on('click',function(){
+  				video.play();
+  				console.log(video);
+
+  			})
+  		}
+  	};
+  }])

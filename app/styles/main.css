@@ -146,8 +146,12 @@ a, u {
     color:white !important;
 }
 
+[text-center]{
+  text-align: center;
+}
+
 #bgImg {
-    background: url('../images/cover-mobile.jpg') no-repeat center center fixed;
+    background: url('../images/pattern.png') no-repeat center center fixed;
     -webkit-background-size: cover;
     position: absolute;
     -moz-background-size: cover;
@@ -155,10 +159,93 @@ a, u {
     width: 100%;
     z-index: -100 !important;
     background-size: cover;
-    filter:grayscale(100%);
-    -webkit-filter:grayscale(100%);
+    /*filter:grayscale(100%);*/
+    /*-webkit-filter:grayscale(100%);*/
     transition: -webkit-filter .50s ease-in, filter .50s ease-in;
 }
+
+#bgMove{
+    /*background: url('../images/last2.png') no-repeat center center fixed;*/
+    opacity: 1;
+    -webkit-background-size: cover;
+    position: absolute;
+    -moz-background-size: cover;
+    height: 100%;
+    width: 100%;
+    z-index: -100 !important;
+    background-size: cover;
+    /*filter:grayscale(100%);*/
+    /*-webkit-filter:grayscale(100%);*/
+    transition: -webkit-filter .50s ease-in, filter .50s ease-in;
+    animation-timing-function: ease-out;
+    animation: movingClouds 6s infinite;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation: movingClouds 6s infinite;
+}
+
+@keyframes movingClouds {
+    0% {
+      -webkit-transform: translate(0px ,0px);
+         -moz-transform: translate(0px ,0px);
+          -ms-transform: translate(0px ,0px);
+           -o-transform: translate(0px ,0px);
+              transform: translate(0px ,0px);
+    }
+    30% {
+           -webkit-transform: translate(5px ,0px);
+         -moz-transform: translate(5px ,0px);
+          -ms-transform: translate(5px ,0px);
+           -o-transform: translate(5px ,0px);
+              transform: translate(5px ,0px);
+    }
+    60% {
+           -webkit-transform: translate(-5px ,0px);
+         -moz-transform: translate(-5px ,0px);
+          -ms-transform: translate(-5px ,0px);
+           -o-transform: translate(-5px ,0px);
+              transform: translate(-5px ,0px);
+    }
+    100%{
+       -webkit-transform: translate(0px ,0px);
+         -moz-transform: translate(0px ,0px);
+          -ms-transform: translate(0px ,0px);
+           -o-transform: translate(0px ,0px);
+              transform: translate(0px ,0px);
+    }
+}
+
+
+@-webkit-keyframes movingClouds {
+    0% {
+      -webkit-transform: translate(0px ,0px);
+         -moz-transform: translate(0px ,0px);
+          -ms-transform: translate(0px ,0px);
+           -o-transform: translate(0px ,0px);
+              transform: translate(0px ,0px);
+    }
+    30% {
+           -webkit-transform: translate(5px ,0px);
+         -moz-transform: translate(5px ,0px);
+          -ms-transform: translate(5px ,0px);
+           -o-transform: translate(5px ,0px);
+              transform: translate(5px ,0px);
+    }
+    60% {
+           -webkit-transform: translate(-5px ,0px);
+         -moz-transform: translate(-5px ,0px);
+          -ms-transform: translate(-5px ,0px);
+           -o-transform: translate(-5px ,0px);
+              transform: translate(-5px ,0px);
+    }
+    100%{
+       -webkit-transform: translate(0px ,0px);
+         -moz-transform: translate(0px ,0px);
+          -ms-transform: translate(0px ,0px);
+           -o-transform: translate(0px ,0px);
+              transform: translate(0px ,0px);
+    }
+}
+
 
 [role="alert"] div{
   font-size: 12px;

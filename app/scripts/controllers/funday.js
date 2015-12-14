@@ -314,4 +314,28 @@ angular.module('npatApp')
 
     	}
     };
-  });
+  }).directive('video', [function () {
+  	return {
+  		restrict: 'EAC',
+  		link: function (scope, iElement, iAttrs) {
+			angular.element(iElement).on('click', function(){
+				if(this.paused){
+					this.play();
+				} else {
+					this.pause();
+				}
+			});
+
+			angular.element(iElement).on('mouseover mouseout', function(){
+				console.log( this.previousElementSibling );
+				if (this.hasAttribute("controls")) {
+					this.removeAttribute("controls")
+					this.previousElementSibling.removeAttribute('style');
+				} else {
+					this.setAttribute("controls", "controls");
+					this.previousElementSibling.setAttribute('style','opacity:0.5');
+				}
+			});
+  		}
+  	};
+  }]);

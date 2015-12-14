@@ -7,7 +7,14 @@
 </style>
 
 <!-- for mobile -->
-<div id="bgImg" ng-if="isMobile" ng-class="{'greyscale': videoColor}"></div>
+<div id="bgImg" bg-img ng-if="isMobile" ng-class="{'greyscale': videoColor}">
+  
+</div>
+
+<!-- delete -->
+<!-- <div id="bgMove" bg-img ng-if="isMobile" ng-class="{'greyscale': videoColor}">
+  
+</div> -->
 
 <!-- for desktop -->
 <video ng-if="!isMobile" autoplay loop id="bgvid" ng-class="{'greyscale': videoColor}">
@@ -33,10 +40,26 @@
 
       <div>
         <!--  SIGN UP TEXT  -->
-        <h1>Sign up for AT ˚ FUNDAY</h1>
+        <h1 text-center>Sign up for AT ˚ FUNDAY</h1>
+
       </div>
     </div>
   </a>
+
+  <div watch-video ng-if="isMobile" class="call-to-action" 
+    layout="column"
+    layout-align="center center"
+    >
+      <div>
+        <!--  SIGN UP TEXT  -->
+        <h1 text-center>Watch AT ˚ FUNDAY video</h1>
+
+      </div>
+      <video mobile-vid hidden>
+          <source src="../videos/npat cover2.mp4" type="video/mp4">
+      </video>
+    </div>
+
   
   
 </div>
