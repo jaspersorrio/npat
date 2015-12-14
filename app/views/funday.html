@@ -83,6 +83,7 @@
 					<!-- MAIN -->
 					<md-tab-body>
 						<h2 class="sec-text">Sign up now!</h2>
+						<h5 class="sec-text">The price of AT Funday is $2</h5>
 
 						<div class="page" layout-padding flex>
 							<ng-form name="pageOne">
@@ -174,12 +175,12 @@
 						</md-select>
 					</md-input-container>
 
-					<md-button ng-click="getPageFour(stud)" ng-disabled="!stud.game" class="md-primary md-raised">Confirm</md-button>
+					<md-button ng-click="getPageThree(stud)" ng-disabled="!stud.game" class="md-primary md-raised">Confirm</md-button>
 
 				</md-tab>
 
 				<!-- TEAM -->
-				<md-tab label="Team" ng-disabled="!stud.game" ng-click="getPageFour(stud)">
+				<md-tab label="Team" ng-disabled="!stud.game" ng-click="getPageThree(stud)">
 					<h2>Teams</h2>
 
 					<md-radio-group ng-model="stud.group">
@@ -210,9 +211,9 @@
 						<div ng-if="numberLeft">Woah, only <span class="stand-out">{{numberLeft}}</span> slots left</div>
 
 					</div>
-					<md-button ng-if="!stud._id" class="md-raised md-primary" ng-click="putStudent(stud)" ng-disabled="pageFourBtnCheck(stud)">Confirm</md-button>
+					<md-button ng-if="!stud._id" class="md-raised md-primary" ng-click="putStudent(stud)" ng-disabled="pageThreeBtnCheck(stud)">Confirm</md-button>
 
-					<md-button ng-if="stud._id" class="md-raised md-primary" ng-click="editStudent(stud)" ng-disabled="pageFourBtnCheck(stud)">Edit</md-button>					
+					<md-button ng-if="stud._id" class="md-raised md-primary" ng-click="editStudent(stud)" ng-disabled="pageThreeBtnCheck(stud)">Edit</md-button>					
 
 				</md-tab>
 			</md-tabs>

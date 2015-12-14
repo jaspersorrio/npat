@@ -41,10 +41,6 @@
 
 					Handphone: <%= stud.hp %><br>
 
-					<% if(!stud.noShirt){ %>
-					Shirt: <%= stud.shirt + ", " + stud.size %><br>
-					<% } %>
-
 					Game: <%= stud.game %><br>
 
 					Team Code: 
@@ -52,8 +48,8 @@
 					<% } if(stud.teamCode){ %> <%= stud.teamCode %> 
 					<% } if(stud.group === 'Alone') { %> Alone <% } %><br>
 					<br>
-					The total price will be <% if(stud.shirt) {%> $5.00<% }else{ %> $3.00<% } %>.<br>
-					*Incl Food, <% if(stud.shirt) { %>Shirt, <%}%>Drinks and games.
+					The total price will be $2.<br>
+					*Incl Food, Drinks and games.
 
 
 

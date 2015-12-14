@@ -34,47 +34,24 @@ angular.module('npatApp')
     		});
     	}
 
-    	switch($scope.stud.shirt){
-    		case 'white':
-    			$scope.chooseWhite();
-    			break;
-    		case 'black':
-    			$scope.chooseBlack();
-    			break;
-    		case undefined:
-	    		$scope.chooseBlack();
-    			break;
-    		default:
-    			$scope.chooseBlack();
-    			break;
-    	}
-
     	viewHandler('pageTwo');
     };
 
     $scope.getPageThree = function(stud){
-    	if(stud){
-    		console.log(exp);
-    		$cookies.putObject('stud', stud, {
-    			expires: exp
-    		});
-    	}
-    	setTimeout(function(){
-    		viewHandler('pageThree');
-    	}, 1)
-    	
+        if(stud){
+            $cookies.putObject('stud', stud, {
+                expires: exp
+            });
+        }
+
+        viewHandler('pageThree');
+        $scope.checkCode($scope.stud.game, $scope.stud.teamCode)
+        $scope.pageThreeBtnCheck($scope.stud);    	
 
     }
 
     $scope.getPageFour = function(stud){
-    	if(stud){
-    		$cookies.putObject('stud', stud, {
-    			expires: exp
-    		});
-    	}
-    	viewHandler('pageFour');
-    	$scope.checkCode($scope.stud.game, $scope.stud.teamCode)
-    	$scope.pageFourBtnCheck($scope.stud);
+    	
     }
 
     $scope.chooseBlack = function(){
@@ -191,7 +168,7 @@ angular.module('npatApp')
     	})
     }
 
-    $scope.pageFourBtnCheck = function(stud){
+    $scope.pageThreeBtnCheck = function(stud){
     	if(stud.posting){
     		console.log('posting is true!');
     		return true;
@@ -320,14 +297,15 @@ angular.module('npatApp')
   		link: function (scope, iElement, iAttrs) {
 			angular.element(iElement).on('click', function(){
 				if(this.paused){
-					this.play();
+                                                            this.play();
+                                                            this.previousElementSibling.setAttribute('hidden', true);
 				} else {
-					this.pause();
+                                                            this.pause();
+                                                            this.previousElementSibling.removeAttribute('hidden');
 				}
 			});
 
 			angular.element(iElement).on('mouseover mouseout', function(){
-				console.log( this.previousElementSibling );
 				if (this.hasAttribute("controls")) {
 					this.removeAttribute("controls")
 					this.previousElementSibling.removeAttribute('style');
