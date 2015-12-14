@@ -12,7 +12,7 @@ var Schema = mongoose.Schema;
 
 // @@ params
 // createGroup: "c9lgl"
-// game: "Dragon Ball"
+// game: "Dragon Ball"s
 // group: "Group"
 // hp: "92718779"
 // joinGroup: false
@@ -239,16 +239,21 @@ app.get('/api/validate/:id', function(req,res){
 			Student.findByIdAndUpdate(id,{ $set :{validated: true}}, function(err, student){
 				var json;
 
+
 				if(err){
 					json = {
 						success:false
 					};
 					res.render('validate',{res:json});
 				} else {
+
 					console.log(student);
-
-
-					if(student.group == 'Alone'){
+					if(student === undefined || student === null){
+						json = {
+							success:false
+						};
+						res.render('validate',{res:json});
+					} else if(student.group == 'Alone'){
 						// if alone
 						json = {
 							success:true,

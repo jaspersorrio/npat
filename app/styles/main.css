@@ -151,7 +151,7 @@ a, u {
 }
 
 #bgImg {
-    background: url('../images/pattern.png') no-repeat center center fixed;
+    background: url('../images/last.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     position: absolute;
     -moz-background-size: cover;
@@ -165,7 +165,7 @@ a, u {
 }
 
 #bgMove{
-    /*background: url('../images/last2.png') no-repeat center center fixed;*/
+    background: url('../images/last2.png') no-repeat center center fixed;
     opacity: 1;
     -webkit-background-size: cover;
     position: absolute;
